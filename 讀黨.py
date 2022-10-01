@@ -8,7 +8,7 @@ from datetime import datetime
 
 # df = pd.read_csv("yoxi_2021H1.csv")
 
-# time_range=[[0,8],[8,12],[12,16],[16,24]]
+# time_range=[[0,8],[8,12],[12,16],[16,24]] #<- 想要改成更多段在這裡改即可 如 [[0,4],[4,8],[8,12],[12,16],[16,24]]
 # ReadData=[{}]*len(time_range)
 # r,c=df.shape
 # for row in range(1,r):
