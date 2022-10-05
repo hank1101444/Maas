@@ -41,7 +41,7 @@ for row in range(1,r):
 path="data"
 ID=0
 for dic in ReadData:
-    f = open(f"data{ID}.txt", 'w')
+    f = open(f"datafile//data{ID}.txt", 'w')
     for key in dic:
         f.write(f"{key[0]},{key[1]},{dic[key]}\n")
     ID+=1
