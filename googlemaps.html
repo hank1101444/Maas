@@ -1,0 +1,84 @@
+<html>
+  <head>
+    <style>
+      #map {
+        height: 100%;
+        width: 100%;
+       }
+       body{
+        background-color: rgb(255, 255, 255);
+       }
+    </style>
+  </head>
+  <body>
+    <input type="file" onchange="loadFile(this.files[0])">
+    <br>
+    <pre id="output"></pre>
+    <div id="map"></div>
+    <script>
+      var marker = [];
+      var position = [];
+      async function loadFile(file) {
+        var text = await file.text();
+        var lines = text.split("\n"); //按行读取
+        for(var i = 0;i < lines.length;i++){
+          var data = lines[i].split(','); 
+          var dict = [parseFloat(data[0]),parseFloat(data[1]),parseInt(data[2])];
+          position.push(dict);
+          //document.getElementById('output').textContent = dict;
+        }
+        //document.getElementById('output').textContent = position[0][0];
+        //debugger
+        for(var i = 0;i < lines.length;i++){ 
+          adderMaker(position[i][0],position[i][1],position[i][2],i);
+        }
+      }
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 19,
+          center: {
+            lat: 25.05840721778767,
+            lng: 121.54587060213089
+          }
+        });
+      }  
+      function adderMaker(a,b,c,n){
+        var color;
+        var png;
+        if(c == 0){
+          color = "red";
+        }else if(c == 1){
+          color = "orange";
+        }else if(c == 2){
+          color = "yellow";
+        }else if(c == 3){
+          color = "green";
+        }else if(c == 4){
+          color = "blue";
+        }else if(c == 5){
+          color = "pink";
+        }else if(c == 6){
+          color = "purple";
+        }else if(c == 7){
+        }
+        
+        if(c == 7){
+          png = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
+        }else{
+          png = "http://maps.google.com/mapfiles/ms/icons/" + color + "-dot.png";
+        }
+        
+        marker[n] = new google.maps.Marker({
+	        position:{
+            lat: b,
+            lng: a
+          },
+          icon: png,
+          map:map,
+	      });
+      }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOiGyZJCRWl3EPKr5OtezFFuJEPZo0B_E&callback=initMap">
+    </script>
+  </body>
+</html>
