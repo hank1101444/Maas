@@ -1,0 +1,13 @@
+V 一群時間段同個區塊的一群預約者
+G 組別一組最多4人
+
+1. 把終點接近的人放在一組
+
+2. 填滿組別
+for g in G
+  for p in V
+			if(p in g) continue
+			g.add(p)
+			if(虧錢(g)) g.erase(p)
+
+3. 找人數過多(超過4人)的組別並進行修正
